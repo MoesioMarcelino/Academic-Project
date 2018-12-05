@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeLeaf.org">
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastrar Disciplina</title>
+	    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+		<form action="saveDiscipline" method="post">
+			<div>
+				<h4>Cadastrar Disciplina</h4>
+			</div>
+			<div class="form-group">
+				<div>
+					<label for="name">Nome:</label>
+					<input type="text" name="name" id="name" placeholder="Nome da disciplina" class="form-control" />
+				</div>		
+				<br/>
+				<div>
+				<select name="idTeacher" id="idTeacher">
+	    				<option th:each="teacher : ${teachers}" 
+	    				th:value="${teacher.id}" th:text="${teacher.name}">
+	    				</option>
+					</select>
+				</div>
+				<br/>
+				<div>
+					<input type="submit" class="btn btn-primary"/> 
+				</div>
+			</div>
+		</form>
+		
+
+		<table class="table">
+		  	<thead>
+		  		<td>nome</td>
+			  	<td>nome professor</td>
+		  	</thead>
+		  	<tbody>
+		    <tr th:each="discipline : ${disciplines}">
+		    	<form action="editDiscipline" method="post">
+					<td scope="row"><input type="text" name="name" id="name" th:value="${discipline.name}"/></td>
+					<td scope="row"><input th:value="${discipline.teacher.name}"/></td>
+					<td scope="row"><input type="hidden" name="id" id="id" th:value="${discipline.id}"/></td>
+					<td><button type="submit" class="btn btn-warning btn-rounded btn-block"><i class="fa fa-pencil" aria-hidden="true"></i> EDITAR</button></td>
+				</form>
+
+				<td scope="row">
+					<form action="deleteDiscipline" method="post">
+						<input type="hidden" name="id" id="id" th:value="${discipline.id}" />
+						<button type="submit" class="btn btn-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> EXCLUIR</button>
+					</form>
+		       	</td>
+		    </tr>
+		  </tbody>
+		</table>
+		
+		<select name="listDiscipline">
+    		<option th:each="discipline : ${disciplines}" th:value="${discipline.id}" th:text="${discipline.name}">
+    		
+    		</option>
+		</select>
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastrar Aluno</title>
+	    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet"/>
+    <!-- Your custom styles (optional) -->
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+	<div class="container">
+
+		<form action="saveStudent" method="post">
+			<div>
+				<h4>Cadastrar Aluno</h4>
+			</div>
+			<div class="form-group">
+				<div>
+					<label for="name">Nome:</label>
+					<input type="text" name="name" id="name" placeholder="Nome do aluno" class="form-control" />
+				</div>		
+				<br>
+				<div>
+					<label for="cpf">CPF:</label>
+					<input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14" />
+				</div>
+				<br/>
+				<div>
+					<label for="email">Email:</label>
+					<input type="text" name="email" id="email" class="form-control" />
+				</div>
+				<br/>
+				<div>
+					<input type="submit" class="btn btn-primary" /> 
+				</div>
+			</div>
+		</form>
+	
+		<table class="table">
+		  	<thead>
+		  		<td>nome</td>
+			  	<td>cpf</td>
+			  	<td>email</td>
+		  	</thead>
+		  	<tbody>
+		  	  <tr th:each="student : ${students}">
+		    	<form action="editStudent" method="post">
+					<td scope="row"><input type="text" name="name" id="name" th:value="${student.name}" /></td>
+					<td scope="row"><input type="text" name="cpf" id="cpf" th:value="${student.cpf}" /></td>
+					<td scope="row"><input type="text" name="email" id="email" th:value="${student.email}" /></td>
+					<td scope="row">
+					<input type="hidden" name="id" id="id" th:value="${student.id}" />
+					<button type="submit" class="btn btn-warning btn-rounded btn-block"><i class="fa fa-pencil" aria-hidden="true"></i> EDITAR</button>
+		       	</form>	
+		       	</td>
+		       	
+				<td scope="row">
+					<form action="deleteStudent" method="post">
+						<input type="hidden" name="id" id="id" th:value="${student.id}" />
+						<button type="submit" class="btn btn-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> EXCLUIR</button>
+		       		</form>	
+		       	</td>
+		    </tr>
+		  </tbody>
+		</table>
+		
+		<select name="DisciplineID">
+    		<option th:each="discipline : ${disciplines}" 
+    		th:value="${discipline.id}" th:text="${discipline.name}">
+    		</option>
+		</select>
+		
+		<select name="StudentID">
+    		<option th:each="student : ${students}" 
+    		th:value="${student.id}" th:text="${student.name}">
+    		</option>
+		</select>
+		
+	</div>
+</body>
+</html>

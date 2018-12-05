@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeLeaf.org">
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Início - Sistema Acadêmico</title>
+	    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <link rel="stylesheet" href="css/style.css">	
+</head>
+<body>
+	<br><br><br>
+
+	<nav class="navbar navbar-expand-lg navbar-dark elegant-color fixed-top ">
+		<form action="index" method="post" id="index">
+			<a class="navbar-brand" onclick="document.getElementById('index').submit()">SISTEMA ACADÊMICO</a>
+		</form>
+		
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Nav" aria-controls="Nav" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+    	</button>
+
+		<div class="collapse navbar-collapse" id="Nav">
+			<ul class="navbar-nav mr-right">
+				<li class="nav-item">
+					<form action="student" method="post" id="student">
+						<a class="nav-link"  onclick="document.getElementById('student').submit()"><i class="fa fa-graduation-cap"></i> Alunos</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="teacher" method="post" id="teacher">
+						<a class="nav-link"  onclick="document.getElementById('teacher').submit()"><i class="fa fa-institution"></i> Professores</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="discipline" method="post" id="discipline">
+						<a class="nav-link"  onclick="document.getElementById('discipline').submit()"><i class="fa fa-book"></i> Disciplinas</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="grade" method="post" id="grade">
+						<a class="nav-link"  onclick="document.getElementById('grade').submit()"><i class="fa fa-line-chart"></i> Notas</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="studentDiscipline" method="post" id="studentDiscipline">
+						<a class="nav-link"  onclick="document.getElementById('studentDiscipline').submit()"><i class="fa fa-plus-circle"></i> Matrícula</a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<div class="row">
+			<br><br>
+			<div class="col-sm-7 col-xs-12 card">
+				<div class="card-body">
+					<h3 class="card-title"><a>Sobre <i class="fa fa-info-circle"></i></a></h3>
+					<h4 class="card-text">
+						Este sistema é o resultado de um projeto final desenvolvido para as disciplinas de:
+						<br/><br>
+						<span style="font-weight: bold">Programação Orientada a Objetos I</span>
+						<br/>
+						<span style="font-weight: bold">Projeto e Desenvolvimento de Sistemas I (WEB)</span>
+						<br/><br>
+						da <span style="font-weight: bold">Faculdade Paraíso do Ceará</span>, ambas ministradas pelo professor Anselmo Lacerda Gomes.
+					</h4>
+				</div>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-4 col-xs-12 card">
+				<div class="card-body">
+					<h3 class="card-title"><a>Ficha Técnica</i></a></h3>
+					<h4 class="card-text">
+						Linguagem de programação: <span style="font-weight: bold">Java 1.8.0_181</span>
+						<br>
+						Framework Back-End: <span style="font-weight: bold">SpringBoot 2.0.5</span>
+						<br>
+						Framework Front-End: <span style="font-weight: bold">Bootstrap 4</span>
+						<br>
+						Banco de Dados: <span style="font-weight: bold">PostgreSQL 11.1</span>
+						<br><br>
+						Repositório:<a target="_blank" class="p-2 fa-lg fa-2x" href="https://bitbucket.org/bea_trizf/project-academic"><i class="fa fa-github"></i></a>
+
+						<br><br>
+						<span>Última atualização realizada em: 24/11/2018</span>
+				</div>
+			</div>
+		</div>
+
+			<br/>
+			<div class="col-sm-12">
+				<section class="team-section text-center my-5">
+				  <h2 class="h1-responsive font-weight-bold my-5">Equipe de Desenvolvimento</h2>
+				  <div class="row">
+				    
+				    <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
+				      <div class="avatar mx-auto">
+				        <img src="img/beatriz.jpg">
+				      </div>
+				      <h5 class="font-weight-bold mt-4 mb-3">Beatriz Felix</h5>
+				      <p class="blue-text"><strong>Desenvolvedora WEB</strong></p>
+				      <p class="grey-text">Sistemas de Informação<br/>3º semestre</p>
+				      <ul class="list-unstyled mb-0">
+				        <a class="p-2 fa-lg" target="_blank" href="https://github.com/beatrizf13">
+				          <i class="fa fa-github blue-text"> </i>
+				        </a>
+				      </ul>
+				    </div>
+
+				    <div class="col-lg-4 col-md-6 mb-lg-0 mb-5">
+				      <div class="avatar mx-auto">
+				        <img src="img/franklin.jpg">
+				      </div>
+				      <h5 class="font-weight-bold mt-4 mb-3">Franklin Rodrigo</h5>
+				      <p class="blue-text"><strong>Desenvolvedor Back-End</strong></p>
+				      <p class="grey-text">Sistemas de Informação<br/>3º semestre</p>
+				      <ul class="list-unstyled mb-0">
+				        <a class="p-2 fa-lg" target="_blank" href="https://github.com/Franklin-Rodrigo">
+				          <i class="fa fa-github blue-text"> </i>
+				        </a>
+				      </ul>
+				    </div>
+				    
+				    <div class="col-lg-4 col-md-6 mb-md-0 mb-5">
+				      <div class="avatar mx-auto">
+				        <img src="img/moesio.jpg">
+				      </div>
+				      <h5 class="font-weight-bold mt-4 mb-3">Moésio Marcelino</h5>
+				      <p class="blue-text"><strong>Desenvolvedor Front-End</strong></p>
+				      <p class="grey-text">Análise e Desenvolvimento de Sistemas<br/>3º semestre</p>
+				      <ul class="list-unstyled mb-0">
+				        <a class="p-2 fa-lg" target="_blank" href="https://github.com/MoesioMarcelino">
+				          <i class="fa fa-github blue-text"> </i>
+				        </a>
+				      </ul>
+				    </div>
+
+				  </div>
+				</section>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+</html>

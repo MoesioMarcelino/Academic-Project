@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeLeaf.org">
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Alunos na disciplina</title>
+	    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark elegant-color fixed-top ">
+		<form action="index" method="post" id="index">
+			<a class="navbar-brand" onclick="document.getElementById('index').submit()">SISTEMA ACADÊMICO</a>
+		</form>
+		
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Nav" aria-controls="Nav" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+    	</button>
+
+		<div class="collapse navbar-collapse" id="Nav">
+			<ul class="navbar-nav mr-right">
+				<li class="nav-item">
+					<form action="student" method="post" id="student">
+						<a class="nav-link"  onclick="document.getElementById('student').submit()"><i class="fa fa-graduation-cap"></i> Alunos</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="teacher" method="post" id="teacher">
+						<a class="nav-link"  onclick="document.getElementById('teacher').submit()"><i class="fa fa-institution"></i> Professores</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="discipline" method="post" id="discipline">
+						<a class="nav-link"  onclick="document.getElementById('discipline').submit()"><i class="fa fa-book"></i> Disciplinas</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="grade" method="post" id="grade">
+						<a class="nav-link"  onclick="document.getElementById('grade').submit()"><i class="fa fa-line-chart"></i> Notas</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="studentDiscipline" method="post" id="studentDiscipline">
+						<a class="nav-link"  onclick="document.getElementById('studentDiscipline').submit()"><i class="fa fa-plus-circle"></i> Matrícula</a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<br><br><br>
+
+	<div class="container">
+		<div class="col-sm-6" id="card">
+			<div class="info-color text-light py-3">
+				<h4>Matricular alunos na disciplina</h4>
+			</div>
+			<form class="text-center border border-light p-4" action="enrollStudentDiscipline" method="post">
+			    <label for="idDiscipline">Selecione uma disciplina:</label>
+				<select name="idDiscipline" id="idDiscipline" class="form-control" required>
+					<option value="" disabled="1" selected>Clique aqui</option>
+					<option th:each="discipline : ${disciplines}" 
+							th:value="${discipline.id}" th:text="${discipline.name}">
+					</option>
+				</select>
+				<br>
+				<label for="idStudent">Selecione um aluno:</label>
+				<select name="idStudent" id="idStudent" class="form-control" required>
+					<option value="" disabled="1" selected>Clique aqui</option>
+					<option th:each="student : ${students}" 
+							th:value="${student.id}" th:text="${student.name}">
+					</option>
+				</select>
+			    <button class="btn btn-default btn-block my-4" type="submit">Matricular <i class="fa fa-send"></i></button>
+			</form>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+</html>

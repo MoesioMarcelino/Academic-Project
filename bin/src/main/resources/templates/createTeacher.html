@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeLeaf.org">
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Cadastrar Professor</title>
+	    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/mdb.min.css">
+    <link href="../static/css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="js/validator.js"></script>
+	<script  type="text/javascript">
+		$(document).ready(function(){
+			$('#cpf').mask('000.000.000-00')
+		})
+	</script>
+
+</head>
+<body>
+
+	<!-- Modal Adicionar Professor -->
+	<div class="container">
+		<div class="modal fade" id="cadastraNovoProfessor">
+    		<div class="modal-dialog modal-notify modal-info">
+	      		<div class="modal-content">
+
+	        		<!--Cabeçalho do modal-->
+	        		<div class="modal-header text-center">
+						<h4 class="modal-title white-text w-100 font-weight-bold py-4">CADASTRAR NOVO PROFESSOR</h4>
+						<button type="button" class="close" data-dismiss="modal">
+	          	  			<span class="black-text">&times;</span>
+	          			</button>
+	        		</div>
+
+					<!-- Corpo do modal -->
+			        <div class="modal-body">
+			        	<form action="saveTeacher" method="post" data-toggle="validator">
+								<div class="md-form">
+			            			<i class="fa fa-user prefix black-text"></i>
+			            			<input type="text" id="name" name="name" class="form-control" placeholder="Nome Completo" required>
+			          			</div>
+
+				          		<div class="md-form">
+			            			<i class="fa  fa-info-circle prefix black-text"></i>
+			            			<input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" maxlength="14" required>
+			          			</div>
+
+				          		<div class="md-form">
+			            			<i class="fa fa-envelope prefix black-text"></i>
+			            			<input type="email" id="email" class="form-control" placeholder="EMAIL" required>
+			          			</div>
+		          			<div class="modal-footer justify-content-center">
+	          					<button type="submit" class="btn btn-default btn-block">SALVAR</button>
+        					</div>
+	          			</form>
+        			</div>
+	      		</div>
+    		</div>
+		</div>
+
+		<!-- Modal Editar Aluno -->
+		<div class="modal fade" id="editarProfessor">
+    		<div class="modal-dialog modal-notify modal-warning">
+	      		<div class="modal-content">
+
+	        		<!--Cabeçalho do modal-->
+	        		<div class="modal-header text-center">
+						<h4 class="modal-title white-text w-100 font-weight-bold py-4">EDITAR PROFESSOR</h4>
+						<button type="button" class="close" data-dismiss="modal">
+	          	  			<span class="black-text">&times;</span>
+	          			</button>
+	        		</div>
+
+					<!-- Corpo do modal -->
+			        <div class="modal-body">
+			        	<form action="editTeacher" method="post" data-toggle="validator">
+			        		<div class="form-group">
+								<div class="md-form">
+			            			<i class="fa fa-user prefix black-text"></i>
+			            			<input type="text" id="name" name="name" class="form-control" placeholder="Nome Completo" th:field="${teacher.name}" required>
+			          			</div>
+
+				          		<div class="md-form">
+			            			<i class="fa  fa-info-circle prefix black-text"></i>
+			            			<input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" maxlength="14" th:value="${teacher.id}" required>
+			          			</div>
+
+				          		<div class="md-form">
+			            			<i class="fa fa-envelope prefix black-text"></i>
+			            			<input type="email" id="email" class="form-control" placeholder="EMAIL" required>
+			          			</div>
+		          			</div>
+		          			<div class="modal-footer justify-content-center">
+	          					<button type="submit" class="btn btn-default btn-block">SALVAR></i></button>
+        					</div>
+	          			</form>
+        			</div>
+	      		</div>
+    		</div>
+		</div>
+
+		<!-- Modal Excluir Aluno -->
+		<div class="modal fade" id="excluirProfessor">
+    		<div class="modal-dialog modal-notify modal-danger">
+	      		<div class="modal-content">
+
+	        		<!--Cabeçalho do modal-->
+	        		<div class="modal-header text-center">
+						<h4 class="modal-title white-text w-100 font-weight-bold py-4">DESEJA REALMENTE EXCLUIR?</h4>
+						<button type="button" class="close" data-dismiss="modal">
+	          	  			<span aria-hidden="true" class="black-text">&times;</span>
+	          			</button>
+	        		</div>
+
+					<!-- Corpo do modal -->
+			        <div class="container">
+				        <div class="modal-body">
+			        		<br>
+		        			<div class="row">
+								<div class="col-md-6">
+									<form action="deleteTeacher" method="post">
+										<input type="hidden" name="id" id="id" th:value="${teacher.id}" />
+										<button type="submit" class="btn btn-danger btn-block">CONFIRMAR</button>
+		       						</form>
+			          			</div>
+			          			<div class="col-md-6">
+									<button type="submit" class="btn btn-default btn-block" data-dismiss="modal">CANCELAR</button>
+			          			</div>
+		          			</div>
+	        			</div>
+	        		</div>
+	      		</div>
+    		</div>
+		</div>
+
+		<br>
+
+		<!-- Tabela com dados cadastrados -->
+		<table class="table">
+		  	<thead class="black white-text text-center">
+		    	<tr>
+		      		<th scope="col">#</th>
+		      		<th scope="col">NOMES DOS PROFESSORES</th>
+		      		<th scope="col">CPF</th>
+		      		<th scope="col">EMAIL</th>
+		      		<th scope="col" colspan="2">AÇÕES</th>
+		    	</tr>
+			</thead>
+		  	<tbody>
+
+		    <!-- Tabela modelo onde serão preenchidas as informações dos professores cadastrados -->
+		    <tr th:each="teacher : ${teachers}">
+		    	<td scope="row">1</td>
+				<td scope="row">Moesio Ferreira Marcelino<span th:text="${teacher.nome}"></span></td>
+				<td scope="row">054.083.583-80<span th:text="${teacher.cpf}"></span></td>
+				<td scope="row">moesio@aluno.fapce.edu.br<span th:text="${teacher.email}"></span></td>
+				<td><button class="btn btn-danger btn-block py-1" data-toggle="modal" data-target="#excluirProfessor">EXCLUIR</button></td>
+				<td><button class="btn btn-warning btn-block py-1" data-toggle="modal" data-target="#editarProfessor">EDITAR</button></td>
+		    </tr>
+		  </tbody>
+		</table>
+
+		<!-- Botão que ativa o modal -->
+		<div class="text-center">
+		  <a onclick="for='cadastraNovoProfessor'" class="btn btn-default" data-toggle="modal" data-target="#cadastraNovoProfessor">CADASTRAR NOVO PROFESSOR</a>
+		</div>
+
+	</div>
+
+</body>
+</html>

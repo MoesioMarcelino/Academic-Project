@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeLeaf.org">
+<head>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Disciplinas</title>
+	    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+<body>
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark elegant-color fixed-top ">
+		<form action="index" method="post" id="index">
+			<a class="navbar-brand" onclick="document.getElementById('index').submit()">SISTEMA ACADÊMICO</a>
+		</form>
+		
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Nav" aria-controls="Nav" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+    	</button>
+
+		<div class="collapse navbar-collapse" id="Nav">
+			<ul class="navbar-nav mr-right">
+				<li class="nav-item">
+					<form action="student" method="post" id="student">
+						<a class="nav-link"  onclick="document.getElementById('student').submit()"><i class="fa fa-graduation-cap"></i> Alunos</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="teacher" method="post" id="teacher">
+						<a class="nav-link"  onclick="document.getElementById('teacher').submit()"><i class="fa fa-institution"></i> Professores</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="discipline" method="post" id="discipline">
+						<a class="nav-link"  onclick="document.getElementById('discipline').submit()"><i class="fa fa-book"></i> Disciplinas</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="grade" method="post" id="grade">
+						<a class="nav-link"  onclick="document.getElementById('grade').submit()"><i class="fa fa-line-chart"></i> Notas</a>
+					</form>
+				</li>
+				<li class="nav-item">
+					<form action="studentDiscipline" method="post" id="studentDiscipline">
+						<a class="nav-link"  onclick="document.getElementById('studentDiscipline').submit()"><i class="fa fa-plus-circle"></i> Matrícula</a>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
+
+
+	<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Cadastrar Disciplina</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form class="text-center border border-light p-4" action="saveDiscipline" method="post">
+					<div class="modal-body">
+						    <label for="name">Insira o nome da disciplina:</label>
+						    <input type="text" name="name" id="name" placeholder="Nome da disciplina" class="form-control" required/>
+							<br>
+						    <label for="idTeacher">Selecione um professor:</label>
+							<select name="idTeacher" id="idTeacher" class="form-control" required>
+								<option value="" disabled selected>Clique aqui</option>
+								<option th:each="teacher : ${teachers}" 
+										th:value="${teacher.id}" th:text="${teacher.name}">
+								</option>
+							</select>
+					</div>
+				
+					<div class="modal-footer">
+						<button class="btn btn-default btn-block py-3" type="submit">Salvar <i class="fa fa-send"></i></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container">
+		<h1 class="text-center">
+			Disciplinas
+			<button type="button" class="btn success-color" data-toggle="modal" data-target="#basicExampleModal">
+				Novo <i class="fa fa-plus"></i>
+			</button>
+		</h1>
+		<div class="table-responsive">
+			<table class="table">
+			  	<thead class="info-color">
+			    	<tr class="text-center">
+			      		<th scope="col">Nome</th>
+			      		<th scope="col">Professor</th>
+			      		<th scope="col" colspan="3"></th>
+			    	</tr>
+				</thead>
+			  	<tbody>
+			    	<tr th:each="discipline : ${disciplines}">
+				    	<form action="editDiscipline" method="post">
+			    			<input type="hidden" name="id" id="id" th:value="${discipline.id}" />
+							<td scope="row">
+								<input type="text" name="name" id="name" th:value="${discipline.name}" class="form-control" />
+							</td>
+							<td scope="row">
+								<span type="text" th:text="${discipline.teacher.name}" class="form-control" />
+							</td>
+							<td>
+								<button class="btn btn-warning btn-block py-2" type="submit"><i class="fa fa-pencil"></i> EDITAR</button>
+							</td>
+						</form>
+						<td>
+							<form action="deleteDiscipline" method="post">
+								<input type="hidden" name="id" id="id" th:value="${discipline.id}" />
+								<button class="btn btn-danger btn-block py-2" type="submit"><i class="fa fa-exclamation-triangle"></i> REMOVER</button>
+							</form>
+						</td>
+			    	</tr>
+			  	</tbody>
+			</table>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+</html>

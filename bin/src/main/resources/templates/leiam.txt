@@ -1,0 +1,13 @@
+vamos utilizar o seguinte padrão 
+
+visualizar | listar - show 
+editar - edit
+criar - create
+
+
+exemplo: 
+createStudent
+editStudent
+showStudents
+
+*names no inputs em inglês também
